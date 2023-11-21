@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <style>
+    .update-div {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 25vw;
+      height: 25vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: white; /* Optional: Set a background color for better visibility */
+      z-index: 1; /* Set a higher z-index value to ensure it appears above other elements */
+      border: 1px solid #ccc; /* Optional: Add a border for better visibility */
+      visibility: hidden;
+    }
+
+
+
+
+  </style>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" aria-current="page" href="createtodo">Create Todo</a>
+        <a class="nav-link" href="viewtodos">View Todos</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Description</th>
+    <th scope="col">DateTime</th>
+    <th scope="col">Priority</th>
+    <th scope="col">delete</th>
+    <th scope="col">update</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="todo : ${todos}">
+    <td th:text="${todo.description}" />
+    <td th:text="${todo.dateTime}" />
+    <td th:text="${todo.priority}" />
+    <td>
+      <form th:action="@{'/delete/' + ${todo.id}}" method="post">
+        <input type="hidden" name="_method" value="delete" />
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </form>
+    </td>
+    <td>
+      <form th:action="@{'/update/' + ${todo.id}}" method="post">
+        <input type="hidden" name="_method" value="put" />
+        <button type="submit" class="btn btn-danger">update</button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div class="update-div">
+  <form action= "" method="post" class="update-form">
+    <input type="hidden" name="_method" value="update" />
+    <label for="description">...<input type="text" name="" id="description"></label>
+    <label for="dateTime">...<input type="text" name="" id="dateTime"></label>
+    <label for="priority">...<input type="text" name="" id="priority"></label>
+    <div>
+    <input type="submit" value="Update">
+    </div>
+  </form>
+</div>
+
+<!--&lt;!&ndash; Update Modal &ndash;&gt;-->
+<!--<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">-->
+<!--  <div class="modal-dialog" role="document">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h5 class="modal-title" id="updateModalLabel">Update Task</h5>-->
+<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--          <span aria-hidden="true">&times;</span>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--      <div class="modal-body">-->
+<!--        <form id="updateForm" th:action="@{'/update/'}" method="post">-->
+<!--          <input type="hidden" name="_method" value="put" />-->
+<!--          <div class="form-group">-->
+<!--            <label for="updateDescription">Description</label>-->
+<!--            <input type="text" class="form-control" id="updateDescription" name="description" />-->
+<!--          </div>-->
+<!--          <div class="form-group">-->
+<!--            <label for="updateDateTime">DateTime</label>-->
+<!--            <input type="text" class="form-control" id="updateDateTime" name="dateTime" />-->
+<!--          </div>-->
+<!--          <div class="form-group">-->
+<!--            <label for="updatePriority">Priority</label>-->
+<!--            <input type="text" class="form-control" id="updatePriority" name="priority" />-->
+<!--          </div>-->
+<!--          <input type="hidden" id="updateId" name="id" />-->
+<!--          <button type="submit" class="btn btn-primary">Update Task</button>-->
+<!--        </form>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>-->
+
+<!--<script>-->
+<!--  function openUpdateModal(description, dateTime, priority, id) {-->
+<!--    $('#updateDescription').val(description);-->
+<!--    $('#updateDateTime').val(dateTime);-->
+<!--    $('#updatePriority').val(priority);-->
+<!--    $('#updateId').val(id);-->
+<!--    $('#updateModal').modal('show');-->
+<!--  }-->
+<!--</script>-->
+
+
+</body>
+</html>
