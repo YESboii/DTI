@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inbox Master - Get Started</title>
+  <style>
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .navbar-logo {
+      width: 50px;
+      height: auto;
+    }
+
+    .navbar-links {
+      display: flex;
+    }
+
+    .navbar-link {
+      color: #fff;
+      text-decoration: none;
+      margin-right: 20px;
+    }
+
+    .navbar-search {
+      flex-grow: 1;
+      margin: 0 20px;
+      max-width: 300px;
+    }
+
+    .navbar-search input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .landing-section {
+      background-color: #007bff;
+      color: #fff;
+      text-align: center;
+      padding: 100px 0;
+    }
+
+    .features-section {
+      background-color: #fff;
+      color: #333;
+      padding: 50px 0;
+      text-align: center;
+    }
+
+    .feature-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .feature-box {
+      width: 50%;
+      padding: 20px;
+      background-color: #f0f0f0;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .feature-box:hover {
+      transform: translateY(-5px);
+      outline: 2px dashed black;
+      outline-offset: -2px;
+    }
+
+    .customer-reviews-section {
+      background-color: #333;
+      color: #fff;
+      padding: 100px 0;
+      text-align: center;
+    }
+
+    .customer-review {
+      margin-bottom: 30px;
+      padding: 20px;
+      background-color: #444;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .customer-review p {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .customer-name {
+      font-weight: bold;
+      font-size: 16px;
+    }
+    img{
+      border-radius: 50%;
+
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div>
+    <img src="" th:src="@{/imgs/mail.jpeg}" alt="Inbox Master Logo" class="navbar-logo">
+
+  </div>
+  <div class="navbar-links">
+    <a href="/inboxmaster/auth/signin" class="navbar-link">Login</a>
+    <a href="/inboxmaster/auth/register" class="navbar-link">Sign Up</a>
+    <a href="/inboxmaster/contactus" class="navbar-link">Contact Us</a>
+  </div>
+  <div class="navbar-search">
+    <input type="text" placeholder="Search...">
+  </div>
+</nav>
+
+<section class="landing-section">
+  <div class="container">
+    <h2>Get Started with Inbox Master</h2>
+    <p>Supercharge your productivity with our powerful email management solution.</p>
+    <a href="#features" class="btn">Get Started</a>
+  </div>
+</section>
+
+<section id="features" class="features-section">
+  <div class="container feature-container">
+    <div class="feature-box">
+      <h3>Feature 1</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+    <div class="feature-box">
+      <h3>Feature 2</h3>
+      <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+    <div class="feature-box">
+      <h3>Feature 3</h3>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+    <div class="feature-box">
+      <h3>Feature 4</h3>
+      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+    </div>
+  </div>
+</section>
+
+<section class="customer-reviews-section">
+  <div class="container">
+    <h2>Customer Reviews</h2>
+    <div class="customer-review">
+      <p>"Inbox Master has revolutionized the way I manage my emails. It's intuitive, efficient, and saves me a lot of time!"</p>
+      <p class="customer-name">- John Doe</p>
+    </div>
+    <div class="customer-review">
+      <p>"I've tried many email management tools, but Inbox Master stands out with its simplicity and powerful features."</p>
+      <p class="customer-name">- Jane Smith</p>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>

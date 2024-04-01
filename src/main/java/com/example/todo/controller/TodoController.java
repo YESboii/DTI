@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@RequestMapping("/inboxmaster")
 public class TodoController {
     private final TodoService todoService;
 
@@ -24,14 +25,14 @@ public class TodoController {
     @RequestMapping(path="/createtodo",method = RequestMethod.POST)
     public String createTodo(@ModelAttribute("todo") Todo todo){
         todoService.createTodo(todo);
-        return "redirect:/viewtodos";
+        return "redirect:/inboxmaster/viewtodos";
     }
 
     @RequestMapping(path="/viewtodos",method = RequestMethod.GET)
     public String viewAllTodos(Model model){
         List<Todo> todoList = todoService.findAllTodos();
         model.addAttribute("todos",todoList);
-        return "viewtodos";
+        return "alltodos";
     }
     @DeleteMapping(path = "/delete/{id}")
     public String deleteTodo(@PathVariable("id") int id){
