@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "todo")
 @Data
@@ -15,8 +17,10 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    private String title;
+
     private String description;
 
-    private String dateTime;
-    private String priority;
+    private String additionalDetails;
+    private LocalDateTime reminderTime;
 }

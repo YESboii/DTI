@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Todo List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f7f7f7;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column; /* Display todos in a single column */
+      gap: 20px;
+    }
+
+    .card {
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      transition: box-shadow 0.3s;
+      cursor: pointer;
+      overflow: hidden; /* Ensure hidden overflow for smooth animation */
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .additional-details {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+
+    .card.active .additional-details {
+      max-height: 500px; /* Adjust as needed */
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Iterate over the todo list and generate todo cards -->
+  <div th:each="t : ${todos}" class="card" onclick="toggleDetails(this)">
+    <div class="card-title" th:text="${t.title}"></div>
+    <div class="additional-details">
+      <p><strong>Description:</strong> <span th:text="${t.description}"></span></p>
+      <p><strong>Additional Details:</strong> <span th:text="${t.additionalDetails}"></span></p>
+      <p><strong>Deadline:</strong> <span th:text="${t.reminderTime.toString().substring(0, 10) + ' ' + t.reminderTime.toString().substring(11, 16)}"></span></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleDetails(card) {
+    card.classList.toggle('active');
+  }
+</script>
+
+</body>
+</html>
