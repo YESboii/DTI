@@ -3,8 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    .navbar {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    }
+
+    .navbar-logo {
+    width: 50px;
+    height: auto;
+    }
+
+    .navbar-links {
+    display: flex;
+    }
+
+    .navbar-link {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 20px;
+    }
+
+    .navbar-search {
+    flex-grow: 1;
+    margin: 0 20px;
+    max-width: 300px;
+    }
+
+    .navbar-search input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    }
 </head>
 <body>
+<nav class="navbar">
+    <div>
+        <img src="" th:src="@{/imgs/mail.jpeg}" alt="Inbox Master Logo" class="navbar-logo">
 
+    </div>
+    <div class="navbar-links">
+        <a href="/inboxmaster/auth/signin" class="navbar-link">Login</a>
+        <a href="/inboxmaster/auth/register" class="navbar-link">Sign Up</a>
+        <a href="/inboxmaster/contactus" class="navbar-link">Contact Us</a>
+    </div>
+    <div class="navbar-search">
+        <input type="text" placeholder="Search...">
+    </div>
+</nav>
 </body>
 </html>

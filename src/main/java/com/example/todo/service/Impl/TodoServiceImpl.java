@@ -1,5 +1,6 @@
 package com.example.todo.service.Impl;
 
+import com.example.todo.model.AppUSer;
 import com.example.todo.model.Todo;
 import com.example.todo.repository.TodoRepository;
 import com.example.todo.service.TodoService;
@@ -24,6 +25,16 @@ public class TodoServiceImpl implements TodoService {
     @Override
     public List<Todo> findAllTodos() {
         return todoRepository.findAll();
+    }
+
+    @Override
+    public List<Todo> findAllTodos(AppUSer appUSer) {
+        return todoRepository.findAllByUserId(appUSer);
+    }
+
+    @Override
+    public List<Todo> findAllTodos(AppUSer appUSer, boolean completed) {
+        return todoRepository.findAllByUserIdAndCompleted(appUSer,completed);
     }
 
     @Override

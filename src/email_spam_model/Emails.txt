@@ -1,0 +1,40 @@
+Spam Emails:
+
+Subject: Exclusive Limited Time Offer!
+Dear Customer,
+Congratulations! You've been selected for an exclusive limited-time offer to claim a free vacation package to a luxurious resort in the Bahamas. Don't miss out on this incredible opportunity! Click the link below to redeem your prize now.
+[Link to Spammy Website]
+
+Subject: Urgent: Your Account Security Alert
+Attention:
+We've detected suspicious activity on your account and need you to verify your information immediately to prevent unauthorized access. Please click the link below to confirm your identity and secure your account.
+Failure to act may result in the suspension of your account.
+[Link to Phishing Site]
+
+Subject: You've Won a Lottery!
+Congratulations!
+You have been selected as the winner of our annual lottery draw, entitling you to a cash prize of $1,000,000! To claim your winnings, simply reply to this email with your personal details, including your bank account information for the transfer.
+Act fast to claim your prize!
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Gray email::
+Subject: Monthly Newsletter: April Edition
+Dear Valued Subscriber,
+Welcome to the April edition of our monthly newsletter! In this issue, we bring you the latest updates on industry trends, tips for optimizing your business performance, and exclusive offers for our loyal customers. We hope you find it informative and engaging.
+Best regards,
+[Company Name]
+
+-------------------------------------------------------------------------------------------------------------------------------------
+Non-Spam Emails:
+
+Subject: Invitation to Attend Our Webinar
+Dear [Name],
+We're excited to invite you to attend our upcoming webinar on "Unlocking the Power of Data Analytics in Business." Join us on [Date] at [Time] as industry experts share insights and strategies for leveraging data to drive business growth. Reserve your spot today!
+Kind regards,
+[Company Name]
+
+Subject: Thank You for Your Recent Purchase
+Dear [Customer Name],
+Thank you for choosing [Company Name] for your recent purchase. We appreciate your business and strive to provide the best products and service possible. If you have any questions or concerns about your order, please don't hesitate to contact us. We look forward to serving you again in the future.
+Sincerely,
+[Company Name]

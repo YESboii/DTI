@@ -23,7 +23,23 @@ public class SecurityConfig {
                     auth.requestMatchers("/inboxmaster/contactus").permitAll();
                     auth.anyRequest().authenticated();
                 })
+                .formLogin(formLogin ->
+                        formLogin
+                                .loginPage("/inboxmaster/auth/signin")
+                                .usernameParameter("username")
+                                .passwordParameter("password")
+                                .defaultSuccessUrl("/inboxmaster/viewtodos", true)
+                                .failureUrl("/login?error=true")
 
+                )
+                .logout(logout ->
+                        logout
+                                .logoutUrl("/logout")
+                                .logoutSuccessUrl("/inboxmaster/auth/signin")
+                                .invalidateHttpSession(true)
+                                .deleteCookies("JSESSIONID")
+                )
+//                .authorizeHttpRequests().anyRequest().permitAll().and()
                 .build();
     }
     @Bean

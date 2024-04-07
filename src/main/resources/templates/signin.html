@@ -3,10 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            height: 40px;
+        }
+
+        .navbar-logo {
+            width: 50px;
+            height: auto;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar-link {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: grid;
+            grid-row-gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+
+        img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+        .error-message{
+            color:red;
+        }
+
+
+    </style>
 </head>
 <body>
+<nav class="navbar">
+    <div>
+        <img src="" th:src="@{/imgs/mail.jpeg}" alt="Inbox Master Logo" class="navbar-logo">
+    </div>
+    <div class="navbar-links">
+        <a href="/inboxmaster/auth/signin" class="navbar-link">Login</a>
+        <a href="/inboxmaster/auth/register" class="navbar-link">Sign Up</a>
+        <a href="/inboxmaster/contactus" class="navbar-link">Contact Us</a>
+    </div>
+
+</nav>
+<div class="container">
+
+    <h2>User Sign In</h2>
+<form id="signInForm" action="/inboxmaster/auth/signin" method="post">
+    <label for="username">Username:</label>
+    <input type="email" id="username" name="username" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+
+    <input type="submit" value="Login">
+</form>
 <div th:if="${errorMessage}" class="error-message">
     <p th:text="${errorMessage}"></p>
+</div>
 </div>
 </body>
 </html>
