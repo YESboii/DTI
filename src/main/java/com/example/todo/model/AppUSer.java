@@ -76,6 +76,6 @@ public class AppUSer implements UserDetails {
 
     @Override
     public String toString() {
-        return this.username;
+        return this.username+" "+this.password;
     }
 }

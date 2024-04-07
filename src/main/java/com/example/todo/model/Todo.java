@@ -23,4 +23,9 @@ public class Todo {
 
     private String additionalDetails;
     private LocalDateTime reminderTime;
+
+    private boolean completed;
+    @ManyToOne
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    private AppUSer userId;
 }

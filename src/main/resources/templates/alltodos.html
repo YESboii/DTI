@@ -7,14 +7,21 @@
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      padding: 20px;
+      padding: 0;
       background-color: #f7f7f7;
+    }
+
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
     }
 
     .container {
       display: flex;
-      flex-direction: column; /* Display todos in a single column */
+      flex-direction: column;
       gap: 20px;
+      padding: 20px;
     }
 
     .card {
@@ -24,7 +31,7 @@
       padding: 20px;
       transition: box-shadow 0.3s;
       cursor: pointer;
-      overflow: hidden; /* Ensure hidden overflow for smooth animation */
+      overflow: hidden;
     }
 
     .card:hover {
@@ -44,20 +51,134 @@
     }
 
     .card.active .additional-details {
-      max-height: 500px; /* Adjust as needed */
+      max-height: 500px;
+    }
+
+    .navbar {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .navbar-logo {
+      width: 50px;
+      height: auto;
+    }
+
+    .navbar-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .navbar-link {
+      color: #fff;
+      text-decoration: none;
+    }
+
+
+
+
+
+    .signout button,
+    .mark-completed input[type="submit"] {
+      background-color: #585858;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .signout button:hover,
+    .mark-completed input[type="submit"]:hover {
+      background-color: #2e2d2d;
+    }
+
+    .horizontal-bar {
+      background-color: #333;
+      padding: 5px 20px; /* Adjusted padding to make the bar smaller */
+      display: flex;
+      align-items: center;
+      justify-content: center; /* Center-align the buttons */
+      margin-bottom: 20px;
+    }
+
+    .horizontal-bar-button {
+      background-color: #555;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      text-decoration: none;
+      margin: 0 5px; /* Add margin to separate buttons */
+    }
+
+    .horizontal-bar-button:hover {
+      background-color: #777;
+    }
+
+    #no-todo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .horizontal-bar-button.active {
+      background-color: #777; /* Change background color for active button */
     }
   </style>
 </head>
 <body>
 
+
+<nav class="navbar">
+  <div>
+    <img src="" th:src="@{/imgs/mail.jpeg}" alt="Inbox Master Logo" class="navbar-logo">
+  </div>
+  <div class="navbar-links">
+    <a href="/inboxmaster/auth/signin" class="navbar-link">Login</a>
+    <a href="/inboxmaster/auth/register" class="navbar-link">Sign Up</a>
+    <a href="/inboxmaster/contactus" class="navbar-link">Contact Us</a>
+    <a href="/inboxmaster/createtodo" class="navbar-link">Add new Todo</a>
+    <a href="#" class="navbar-link">Email Reports</a>
+  </div>
+  <div class="signout">
+    <a href="/logout"><button>Sign out</button></a>
+  </div>
+  <div class="profile">
+    <span><a href="/inboxmaster/profile"><img src="" th:src="@{/imgs/profile.jpg}" alt="Profile Picture" class="profile-picture"></a></span>
+  </div>
+</nav>
+
+<div class="horizontal-bar">
+  <a href="/inboxmaster/viewtodos" class="horizontal-bar-button">All</a>
+  <a href="/inboxmaster/viewtodos?filter=completed" class="horizontal-bar-button">completed</a>
+  <a href="/inboxmaster/viewtodos?filter=overdue" class="horizontal-bar-button">Overdue</a>
+  <a href="/inboxmaster/viewtodos?filter=due" class="horizontal-bar-button">Due</a>
+</div>
+
 <div class="container">
-  <!-- Iterate over the todo list and generate todo cards -->
+  <div th:if="${size == 0}" id="no-todo">
+    <span>No Todos</span>
+  </div>
   <div th:each="t : ${todos}" class="card" onclick="toggleDetails(this)">
     <div class="card-title" th:text="${t.title}"></div>
     <div class="additional-details">
       <p><strong>Description:</strong> <span th:text="${t.description}"></span></p>
       <p><strong>Additional Details:</strong> <span th:text="${t.additionalDetails}"></span></p>
       <p><strong>Deadline:</strong> <span th:text="${t.reminderTime.toString().substring(0, 10) + ' ' + t.reminderTime.toString().substring(11, 16)}"></span></p>
+      <div th:if="${t.completed}"><img src="" th:src="@{/imgs/completed.svg}" alt=""/></div>
+      <div class="mark-completed" th:unless="${t.completed}">
+        <form th:action="@{/inboxmaster/complete}" method="post">
+          <input type="hidden" th:value="${t.id}" id="id" name="id">
+          <input type="submit" value="Mark as completed">
+        </form>
+      </div>
     </div>
   </div>
 </div>
@@ -66,6 +187,18 @@
   function toggleDetails(card) {
     card.classList.toggle('active');
   }
+  const buttons = document.querySelectorAll('.horizontal-bar-button');
+
+  // Add click event listener to each button
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Remove "active" class from all buttons
+      buttons.forEach(btn => btn.classList.remove('active'));
+
+      // Add "active" class to the clicked button
+      button.classList.add('active');
+    });
+  });
 </script>
 
 </body>

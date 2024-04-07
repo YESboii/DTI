@@ -11,10 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.SecureRandom;
 @Controller
@@ -26,11 +23,16 @@ public class AuthenticationController {
     private final EmailService emailService;
     private final OTPGenerator otpGenerator;
     private final UserRepository userRepository;
-    @RequestMapping("/register")
+    @RequestMapping(value = "/signin",method = RequestMethod.GET)
+    public String signInPage(Model model){
+        return "signin";
+    }
+    @RequestMapping(value = "/register",method = RequestMethod.GET)
     public String registerPage(Model model){
         model.addAttribute("user", new AppUSer());
         return "signup";
     }
+
     @PostMapping("/register")
     public String authenticate(@ModelAttribute AppUSer appUSer, HttpSession session,Model model){
 //         authenticationService.registerUser(appUSer);
@@ -44,8 +46,8 @@ public class AuthenticationController {
         session.setAttribute("otp",otp);
         String subject = "OTP Verfication";
         String message = ""+"<div>"+
-                "<h1>"+"Hello user, Please enter the 5 digit OTP to reset your password."+"<b>"+"OTP is  "+otp+"</n>"+"<h1>"
-                +"<div>";
+                "<h1>"+"Hello user, Please enter the 5 digit OTP to Signup."+"<b>"+"OTP is  "+otp+"</n>"+"<h1>"
+                +"</div>";
         boolean flag = this.emailService.sendEmail(subject,message,appUSer.getUsername());
          return "verifyotp";
     }
@@ -53,6 +55,7 @@ public class AuthenticationController {
     public String verify(@RequestParam("otp") int otpEntered, HttpSession session, Model model) {
         int otp = (Integer) session.getAttribute("otp");
         AppUSer appUser = (AppUSer) session.getAttribute("userToBeRegistered");
+            System.out.println(appUser.toString());
         if (otp == otpEntered) {
             authenticationService.registerUser(appUser);
             return "redirect:/inboxmaster/auth/signin"; // Redirect to sign-in page after successful registration
